@@ -55,6 +55,7 @@ heights = [72, 68, 72, 66, 76]
 #     cast[trio[0]] = "{} {}".format(trio[1], trio[2])
 
 # using Enumerate
+
 for index, name in enumerate(cast):
     # print("{} {} {}".format(trio[0], trio[1], trio[2]))
     cast[index] = "{} {}".format(name, heights[index])
