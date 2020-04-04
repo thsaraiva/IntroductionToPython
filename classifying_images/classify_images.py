@@ -24,11 +24,11 @@
 from classifier import classifier
 
 
-# TODO 3: Define classify_images function below, specifically replace the None
-#       below by the function definition of the classify_images function. 
-#       Notice that this function doesn't return anything because the 
-#       results_dic dictionary that is passed into the function is a mutable 
-#       data type so no return is needed.
+# Define classify_images function below, specifically replace the None
+# below by the function definition of the classify_images function.
+# Notice that this function doesn't return anything because the
+# results_dic dictionary that is passed into the function is a mutable
+# data type so no return is needed.
 # 
 def classify_images(images_dir, results_dic, model):
     """
@@ -67,4 +67,16 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.         
     """
+    for filename, labels_list in results_dic.items():
+        image_classification = classifier(images_dir + filename, model).strip().lower()
+        labels_list.append(image_classification)
+        labels_list.append(compare_labels(labels_list[0], image_classification))
+
     return None
+
+
+def compare_labels(real_label, image_classification):
+    if real_label in image_classification:
+        return 1
+    else:
+        return 0
