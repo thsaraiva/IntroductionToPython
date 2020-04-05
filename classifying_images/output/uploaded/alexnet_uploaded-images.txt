@@ -1,0 +1,81 @@
+Command Line Arguments:
+     dir = uploaded_images/ 
+    arch = alexnet 
+ dogfile = dognames.txt
+
+Pet Image Label Dictionary has 5 key-value pairs.
+Below are 5 of them:
+ 1 key:      labrador_retriever_01.jpg  label:         labrador retriever
+ 2 key:      labrador_retriever_02.jpg  label:         labrador retriever
+ 3 key:                   hyena_01.jpg  label:                      hyena
+ 4 key:              bald_eagle_01.jpg  label:                 bald eagle
+ 5 key:                   chair_01.jpg  label:                      chair
+
+     MATCH:
+
+                  hyena_01.jpg: 
+Real:                      hyena   Classifier:                  hyena, hyaena
+
+             bald_eagle_01.jpg: 
+Real:                 bald eagle   Classifier: bald eagle, american eagle, haliaeetus leucocephalus
+
+ NOT A MATCH:
+
+     labrador_retriever_01.jpg: 
+Real:         labrador retriever   Classifier:        bloodhound, sleuthhound
+
+     labrador_retriever_02.jpg: 
+Real:         labrador retriever   Classifier: chain mail, ring mail, mail, chain armor, chain armour, ring armor, ring armour
+
+                  chair_01.jpg: 
+Real:                      chair   Classifier:                         teapot
+
+# Total Images 5 # Matches: 2 # NOT Matches: 3
+
+     MATCH:
+
+                  hyena_01.jpg: 
+Real:                      hyena   Classifier:                  hyena, hyaena  
+PetLabelDog: 0  ClassLabelDog: 0
+
+             bald_eagle_01.jpg: 
+Real:                 bald eagle   Classifier: bald eagle, american eagle, haliaeetus leucocephalus  
+PetLabelDog: 0  ClassLabelDog: 0
+
+ NOT A MATCH:
+
+     labrador_retriever_01.jpg: 
+Real:         labrador retriever   Classifier:        bloodhound, sleuthhound  
+PetLabelDog: 1  ClassLabelDog: 1
+
+     labrador_retriever_02.jpg: 
+Real:         labrador retriever   Classifier: chain mail, ring mail, mail, chain armor, chain armour, ring armor, ring armour  
+PetLabelDog: 1  ClassLabelDog: 0
+
+                  chair_01.jpg: 
+Real:                      chair   Classifier:                         teapot  
+PetLabelDog: 0  ClassLabelDog: 0
+
+# Total Images 5 # Matches: 2 # NOT Matches: 3
+
+ ** Statistics from calculates_results_stats() function:
+N Images:  5  N Dog Images:  2  N NotDog Images:  3 
+Pct Corr dog:  50.0 Pct Corr NOTdog: 100.0  Pct Corr Breed:   0.0
+
+ ** Check Statistics - calculated from this function as a check:
+N Images:  5  N Dog Images:  2  N NotDog Images:  3 
+Pct Corr dog:  50.0 Pct Corr NOTdog: 100.0  Pct Corr Breed:   0.0
+CNN model architectures:  alexnet
+    - Number of Images:  5
+    - Number of Dog Images:  2
+    - Number of "Not-a" Dog Images:  3
+    - pct_match:  40.0
+    - pct_correct_dogs:  50.0
+    - pct_correct_breed:   0.0
+    - pct_correct_not_dogs: 100.0
+    - Misclassified dogs:  1
+        - Real label : labrador retriever, Classified label: chain mail, ring mail, mail, chain armor, chain armour, ring armor, ring armour
+    - Misclassified breeds:  1
+        - Real label : labrador retriever, Classified label: bloodhound, sleuthhound
+
+** Total Elapsed Runtime: 0:0:0

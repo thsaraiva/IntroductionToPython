@@ -87,6 +87,18 @@ def calculates_results_stats(results_dic):
         n_correct_not_dogs = increment_if_is_correctly_classified_as_not_dog(n_correct_not_dogs, results)
         n_correct_breed = increment_if_is_dog_and_is_a_match(n_correct_breed, results)
 
+    if n_dogs_img != 0:
+        pct_correct_dogs = (n_correct_dogs / n_dogs_img) * 100
+        pct_correct_breed = (n_correct_breed / n_dogs_img) * 100
+    else:
+        pct_correct_dogs = 0
+        pct_correct_breed = 0
+
+    if n_not_dogs_img != 0:
+        pct_correct_not_dogs = (n_correct_not_dogs / n_not_dogs_img) * 100
+    else:
+        pct_correct_not_dogs = 0
+
     results_stats_dic = {'n_images': n_images,
                          'n_dogs_img': n_dogs_img,
                          'n_not_dogs_img': n_not_dogs_img,
@@ -95,9 +107,9 @@ def calculates_results_stats(results_dic):
                          'n_correct_not_dogs': n_correct_not_dogs,
                          'n_correct_breed': n_correct_breed,
                          'pct_match': (n_match / n_images) * 100,
-                         'pct_correct_dogs': (n_correct_dogs / n_dogs_img) * 100,
-                         'pct_correct_breed': (n_correct_breed / n_dogs_img) * 100,
-                         'pct_correct_not_dogs': (n_correct_not_dogs / n_not_dogs_img) * 100}
+                         'pct_correct_dogs': pct_correct_dogs,
+                         'pct_correct_breed': pct_correct_breed,
+                         'pct_correct_not_dogs': pct_correct_not_dogs}
 
     return results_stats_dic
 
