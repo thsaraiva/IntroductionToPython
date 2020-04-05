@@ -6,7 +6,7 @@
 # DATE CREATED:                                  
 # REVISED DATE: 
 # PURPOSE: Create a function calculates_results_stats that calculates the 
-#          statistics of the results of the programrun using the classifier's model 
+#          statistics of the results of the program run using the classifier's model
 #          architecture to classify the images. This function will use the 
 #          results in the results dictionary to calculate these statistics. 
 #          This function will then put the results statistics in a dictionary
@@ -27,47 +27,112 @@
 #          following keys:
 #            n_images - number of images
 #            n_dogs_img - number of dog images
-#            n_notdogs_img - number of NON-dog images
+#            n_not_dogs_img - number of NON-dog images
 #            n_match - number of matches between pet & classifier labels
 #            n_correct_dogs - number of correctly classified dog images
-#            n_correct_notdogs - number of correctly classified NON-dog images
+#            n_correct_not_dogs - number of correctly classified NON-dog images
 #            n_correct_breed - number of correctly classified dog breeds
 #            pct_match - percentage of correct matches
 #            pct_correct_dogs - percentage of correctly classified dogs
 #            pct_correct_breed - percentage of correctly classified dog breeds
-#            pct_correct_notdogs - percentage of correctly classified NON-dogs
+#            pct_correct_not_dogs - percentage of correctly classified NON-dogs
 #
 ##
-# TODO 5: Define calculates_results_stats function below, please be certain to replace None
-#       in the return statement with the results_stats_dic dictionary that you create 
-#       with this function
+# Define calculates_results_stats function below, please be certain to replace None
+# in the return statement with the results_stats_dic dictionary that you create
+# with this function
 # 
+
+
 def calculates_results_stats(results_dic):
     """
-    Calculates statistics of the results of the program run using classifier's model 
-    architecture to classifying pet images. Then puts the results statistics in a 
+    Calculates statistics of the results of the program run using classifier's model
+    architecture to classifying pet images. Then puts the results statistics in a
     dictionary (results_stats_dic) so that it's returned for printing as to help
-    the user to determine the 'best' model for classifying images. Note that 
+    the user to determine the 'best' model for classifying images. Note that
     the statistics calculated as the results are either percentages or counts.
     Parameters:
-      results_dic - Dictionary with key as image filename and value as a List 
+      results_dic - Dictionary with key as image filename and value as a List
              (index)idx 0 = pet image label (string)
                     idx 1 = classifier label (string)
-                    idx 2 = 1/0 (int)  where 1 = match between pet image and 
+                    idx 2 = 1/0 (int)  where 1 = match between pet image and
                             classifer labels and 0 = no match between labels
-                    idx 3 = 1/0 (int)  where 1 = pet image 'is-a' dog and 
-                            0 = pet Image 'is-NOT-a' dog. 
-                    idx 4 = 1/0 (int)  where 1 = Classifier classifies image 
-                            'as-a' dog and 0 = Classifier classifies image  
+                    idx 3 = 1/0 (int)  where 1 = pet image 'is-a' dog and
+                            0 = pet Image 'is-NOT-a' dog.
+                    idx 4 = 1/0 (int)  where 1 = Classifier classifies image
+                            'as-a' dog and 0 = Classifier classifies image
                             'as-NOT-a' dog.
     Returns:
      results_stats_dic - Dictionary that contains the results statistics (either
-                    a percentage or a count) where the key is the statistic's 
+                    a percentage or a count) where the key is the statistic's
                      name (starting with 'pct' for percentage or 'n' for count)
                      and the value is the statistic's value. See comments above
                      and the previous topic Calculating Results in the class for details
                      on how to calculate the counts and statistics.
-    """        
-    # Replace None with the results_stats_dic dictionary that you created with 
-    # this function 
-    return None
+    """
+
+    n_images = len(results_dic)
+    n_dogs_img = 0
+    n_not_dogs_img = 0
+    n_match = 0
+    n_correct_dogs = 0
+    n_correct_not_dogs = 0
+    n_correct_breed = 0
+
+    for filename, results in results_dic.items():
+        n_dogs_img = increment_if_is_dog_image(n_dogs_img, results)
+        n_not_dogs_img = increment_if_is_not_dog_image(n_not_dogs_img, results)
+        n_match = increment_if_is_match(n_match, results)
+        n_correct_dogs = increment_if_is_correctly_classified_as_dog(n_correct_dogs, results)
+        n_correct_not_dogs = increment_if_is_correctly_classified_as_not_dog(n_correct_not_dogs, results)
+        n_correct_breed = increment_if_is_dog_and_is_a_match(n_correct_breed, results)
+
+    results_stats_dic = {'n_images': n_images,
+                         'n_dogs_img': n_dogs_img,
+                         'n_not_dogs_img': n_not_dogs_img,
+                         'n_match': n_match,
+                         'n_correct_dogs': n_correct_dogs,
+                         'n_correct_not_dogs': n_correct_not_dogs,
+                         'n_correct_breed': n_correct_breed,
+                         'pct_match': (n_match / n_images) * 100,
+                         'pct_correct_dogs': (n_correct_dogs / n_dogs_img) * 100,
+                         'pct_correct_breed': (n_correct_breed / n_dogs_img) * 100,
+                         'pct_correct_not_dogs': (n_correct_not_dogs / n_not_dogs_img) * 100}
+
+    return results_stats_dic
+
+
+def increment_if_is_dog_image(n_dogs_img, results):
+    if results[3] == 1:
+        n_dogs_img += 1
+    return n_dogs_img
+
+
+def increment_if_is_not_dog_image(n_not_dogs_img, results):
+    if results[3] == 0:
+        n_not_dogs_img += 1
+    return n_not_dogs_img
+
+
+def increment_if_is_match(n_match, results):
+    if results[2] == 1:
+        n_match += 1
+    return n_match
+
+
+def increment_if_is_correctly_classified_as_dog(n_correct_dogs, results):
+    if results[3] == 1 and results[4] == 1:
+        n_correct_dogs += 1
+    return n_correct_dogs
+
+
+def increment_if_is_correctly_classified_as_not_dog(n_correct_not_dogs, results):
+    if results[3] == 0 and results[4] == 0:
+        n_correct_not_dogs += 1
+    return n_correct_not_dogs
+
+
+def increment_if_is_dog_and_is_a_match(n_correct_breed, results):
+    if results[3] == 1 and results[2] == 1:
+        n_correct_breed += 1
+    return n_correct_breed

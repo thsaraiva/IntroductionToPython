@@ -74,7 +74,7 @@ def main():
     # Function that checks Results Dictionary for is-a-dog adjustment using results
     check_classifying_labels_as_dogs(results)
 
-    # TODO 5: Define calculates_results_stats function within the file calculates_results_stats.py
+    # Define calculates_results_stats function within the file calculates_results_stats.py
     # This function creates the results statistics dictionary that contains a
     # summary of the results statistics (this includes counts & percentages). This
     # dictionary is returned from the function call as the variable results_stats    
@@ -94,12 +94,8 @@ def main():
     # and incorrectly classified breeds (if requested)
     print_results(results, results_stats, None, True, True)
 
-    # Measure total program runtime by collecting end time
-    end_time = time()
-
     # Computes overall runtime in seconds & prints it in hh:mm:ss format
-    tot_time = end_time - start_time
-    print(str(tot_time))
+    tot_time = time() - start_time
     print("\n** Total Elapsed Runtime:",
           str(int((tot_time / 3600))) + ":" + str(int((tot_time % 3600) / 60)) + ":"
           + str(int((tot_time % 3600) % 60)))
