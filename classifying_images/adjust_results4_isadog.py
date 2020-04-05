@@ -30,14 +30,14 @@
 #           at indices 3 & 4 to 1 when the label is of-a-dog and to 0 when the 
 #           label isn't a dog.
 #
-##
-# TODO 4: Define adjust_results4_isadog function below, specifically replace the None
-#       below by the function definition of the adjust_results4_isadog function. 
-#       Notice that this function doesn't return anything because the 
-#       results_dic dictionary that is passed into the function is a mutable 
-#       data type so no return is needed.
+#
+# Define adjust_results4_isadog function below, specifically replace the None
+# below by the function definition of the adjust_results4_isadog function.
+# Notice that this function doesn't return anything because the
+# results_dic dictionary that is passed into the function is a mutable
+# data type so no return is needed.
 # 
-def adjust_results4_isadog(results_dic, dogfile):
+def adjust_results4_isadog(results_dic, dog_file):
     """
     Adjusts the results dictionary to determine if classifier correctly 
     classified images 'as a dog' or 'not a dog' especially when not a match. 
@@ -67,3 +67,17 @@ def adjust_results4_isadog(results_dic, dogfile):
     Returns:
            None - results_dic is mutable data type so no return needed.
     """
+    dogs_names_set = set()
+    with open(dog_file, 'r') as dog_file:
+        for dog_name in dog_file:
+            dogs_names_set.add(dog_name.strip().lower())
+
+    for filename, results in results_dic.items():
+        results.extend([is_item_in_set(results[0], dogs_names_set), is_item_in_set(results[1], dogs_names_set)])
+
+
+def is_item_in_set(item, set_of_items):
+    if item in set_of_items:
+        return 1
+    else:
+        return 0

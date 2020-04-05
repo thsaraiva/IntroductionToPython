@@ -1,13 +1,13 @@
 #### Program Outline
 
-- Time your program
+- Time your program - Done!✅
     - Use Time Module to compute program runtime
-- Get program Inputs from the user
+- Get program Inputs from the user - Done!✅
     - Use command line arguments to get user inputs
-- Create Pet Images Labels
+- Create Pet Images Labels - Done!✅
     - Use the pet images filenames to create labels
     - Store the pet image labels in a data structure (e.g. dictionary)
-- Create Classifier Labels and Compare Labels
+- Create Classifier Labels and Compare Labels - Done!✅
     - Use the Classifier function to classify the images and create the classifier labels
     - Compare Classifier Labels to Pet Image Labels
     - Store Pet Labels, Classifier Labels, and their comparison in a complex data structure (e.g. dictionary of lists)

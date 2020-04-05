@@ -72,8 +72,6 @@ def classify_images(images_dir, results_dic, model):
         labels_list.append(image_classification)
         labels_list.append(compare_labels(labels_list[0], image_classification))
 
-    return None
-
 
 def compare_labels(real_label, image_classification):
     if real_label in image_classification:
